@@ -14,11 +14,14 @@ disp(['Total de Amostras: ', num2str(totalAmostrasg)]);
 disp(['Duração: ', num2str(duracaog)]);
 
 % Gráfico no domínio do tempo
-time = (0:1:duracaog);
+time = linspace(0,duracaog,totalAmostrasg);
 
 figure(1), clf;
 subplot(2,1,1);
 plot(time,yg);
+title('Domínio do Tempo')
+xlabel('Tempo (s)')
+set(gca,'xlim',time([1 end]))
 
 
 
