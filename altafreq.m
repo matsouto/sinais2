@@ -30,8 +30,13 @@ f = linspace(-pi,pi,totalAmostras);
 fourier_yg = fftshift(fft(yg));
 fourier_yf = fftshift(fft(yf));
 
-%Plotagem no domínio do tempo
+%Plotagem do diagrama de bode do filtro
+sys = tf(b,a); 
 figure(1), clf;
+bode(sys);
+
+%Plotagem no domínio do tempo
+figure(2), clf;
 subplot(2,1,1);plot(time,yg); grid minor
 title('Domínio do Tempo - Com Ruído')
 xlabel('Tempo (s)');ylabel('Amplitude de X(KT)');
@@ -40,7 +45,7 @@ title('Domínio do Tempo - Sem Ruído');
 xlabel('Tempo(s)');ylabel('Amplitude de X(KT)')
 
 %Plotagem no domínio da frequência
-figure(2), clf;
+figure(3), clf;
 subplot(2,1,1); plot(f,abs(fourier_yg)); grid minor
 title('Domínio da Frequência - Sem Filtro')
 xlabel('W (rad/s)'); ylabel('Amplitude de X(e^j^W)'); axis([-4 4 0 1200]);
@@ -48,5 +53,4 @@ subplot(2,1,2); plot(f,abs(fourier_yf)); grid minor
 title('Domínio da Frequência - Com Filtro')
 xlabel('W (rad/s)'); ylabel('Amplitude de X(e^j^W)');
 
-
-audiowrite('vaf_fil.m4a',yf,fsg);
+audiowrite('vraf_fil.m4a',yf,fsg);
